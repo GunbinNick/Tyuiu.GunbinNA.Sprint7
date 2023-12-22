@@ -40,6 +40,12 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
             this.label1 = new System.Windows.Forms.Label();
             this.buttonMusic = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBoxCountry = new System.Windows.Forms.TextBox();
+            this.textBoxCapital = new System.Windows.Forms.TextBox();
+            this.textBoxEcoClass = new System.Windows.Forms.TextBox();
+            this.textBoxS = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.panelButtons.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -170,10 +176,64 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(785, 253);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
             this.dataGridView1.Size = new System.Drawing.Size(484, 365);
             this.dataGridView1.TabIndex = 3;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1082, 162);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(152, 55);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Done";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // textBoxCountry
+            // 
+            this.textBoxCountry.Location = new System.Drawing.Point(357, 185);
+            this.textBoxCountry.Multiline = true;
+            this.textBoxCountry.Name = "textBoxCountry";
+            this.textBoxCountry.Size = new System.Drawing.Size(100, 26);
+            this.textBoxCountry.TabIndex = 5;
+            // 
+            // textBoxCapital
+            // 
+            this.textBoxCapital.Location = new System.Drawing.Point(357, 253);
+            this.textBoxCapital.Multiline = true;
+            this.textBoxCapital.Name = "textBoxCapital";
+            this.textBoxCapital.Size = new System.Drawing.Size(100, 26);
+            this.textBoxCapital.TabIndex = 5;
+            // 
+            // textBoxEcoClass
+            // 
+            this.textBoxEcoClass.Location = new System.Drawing.Point(357, 327);
+            this.textBoxEcoClass.Multiline = true;
+            this.textBoxEcoClass.Name = "textBoxEcoClass";
+            this.textBoxEcoClass.Size = new System.Drawing.Size(100, 26);
+            this.textBoxEcoClass.TabIndex = 5;
+            // 
+            // textBoxS
+            // 
+            this.textBoxS.Location = new System.Drawing.Point(357, 398);
+            this.textBoxS.Multiline = true;
+            this.textBoxS.Name = "textBoxS";
+            this.textBoxS.Size = new System.Drawing.Size(100, 26);
+            this.textBoxS.TabIndex = 5;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(785, 172);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(126, 39);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "Add";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // FormMain
             // 
@@ -181,6 +241,12 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(255)))), ((int)(((byte)(150)))));
             this.ClientSize = new System.Drawing.Size(1281, 639);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.textBoxS);
+            this.Controls.Add(this.textBoxEcoClass);
+            this.Controls.Add(this.textBoxCapital);
+            this.Controls.Add(this.textBoxCountry);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.buttonMusic);
             this.Controls.Add(this.panelButtons);
@@ -196,6 +262,7 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -211,6 +278,12 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
         private System.Windows.Forms.Button buttonNotes;
         private System.Windows.Forms.Button buttonStats;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBoxCountry;
+        private System.Windows.Forms.TextBox textBoxCapital;
+        private System.Windows.Forms.TextBox textBoxEcoClass;
+        private System.Windows.Forms.TextBox textBoxS;
+        private System.Windows.Forms.Button button2;
     }
 }
 

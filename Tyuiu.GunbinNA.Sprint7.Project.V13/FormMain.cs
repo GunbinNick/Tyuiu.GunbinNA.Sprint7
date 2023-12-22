@@ -27,38 +27,26 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
         static int rows;
         static int columns;
         DataService ds = new DataService();
-        public static int[,] LoadFromFileData(string path)
+        public static string[,] LoadFromFileData(string path)
         {
             string filedata = File.ReadAllText(path);
-
             filedata = filedata.Replace('\n', '\r');
             string[] lines = filedata.Split(new char[] { '\r' }, StringSplitOptions.RemoveEmptyEntries);
 
             rows = lines.Length;
             columns = lines[0].Split(';').Length;
 
-            int[,] array = new int[rows, columns];
+            string[,] array = new string[rows, columns];
 
-            using (TextFieldParser tfp = new TextFieldParser(path))
+            for (int i = 0; i < rows; i++)
             {
-                tfp.TextFieldType = FieldType.Delimited;
-                tfp.SetDelimiters(";");
-
-                while (!tfp.EndOfData)
+                string[] line_str = lines[i].Split(';');
+                for (int j = 0; j < columns; j++)
                 {
-                    for (int i = 0; i < rows; i++)
-                    {
-                        string[] fields = tfp.ReadFields();
-                        for (int j = 0; j < columns; j++)
-                        {
-                            array[i, j] = Convert.ToInt32(fields[j]);
-                        }
-                    }
+                    array[i, j] = line_str[j];
                 }
-                return array;
             }
-
-
+            return array;
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -102,9 +90,9 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
         {
             try
             {
-                string path = @"C:\Users\wackko\source\repos\Tyuiu.GunbinNA.Sprint7\mass1.csv";
+                string path = @"C:\Users\wackko\source\repos\Tyuiu.GunbinNA.Sprint7\mass.csv";
 
-                int[,] array = new int[rows, columns];
+                string[,] array = new string[rows,columns];
 
                 array = LoadFromFileData(path);
 
@@ -113,14 +101,18 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
 
                 for (int i = 0; i < columns; i++)
                 {
-                    dataGridView1.Columns[i].Width = 50;
+                    dataGridView1.Columns[i].Width = 65;
                 }
+                dataGridView1.Columns[0].HeaderText = "Страна";
+                dataGridView1.Columns[1].HeaderText = "Столица";
+                dataGridView1.Columns[2].HeaderText = "Экон.Положение";
+                dataGridView1.Columns[3].HeaderText = "Площадь терр.";
 
-                for(int j = 0; j < rows; j++)
+                for (int i = 0; i < rows; i++)
                 {
-                    for (int c = 0; c < columns; c++)
+                    for (int j = 0; j < columns; j++)
                     {
-                        dataGridView1.Rows[j].Cells[c].Value = array[j, c];
+                        dataGridView1.Rows[i].Cells[j].Value = array[i, j];
                     }
                 }
 
@@ -129,6 +121,14 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
             {
                 MessageBox.Show("ОШИБКА");
             }
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            int n = dataGridView1.RowCount++;
+            dataGridView1.Rows[n].Cells[0].Value = textBoxCountry;
+                    
+
         }
     }
 }
