@@ -23,8 +23,12 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
             music.URL = @"C:\Users\wackko\source\repos\Tyuiu.GunbinNA.Sprint7\ListSongs.mp3";
             music.settings.volume = 10;
             music.controls.play();
+
+            openFileDialogTask.Filter = "Значения, разделенные запятыми(*.csv)|*.csv|Все файлы(*.*)|*.*";
+            saveFileDialogMatrix.Filter = "Значения, разделенные запятыми(*.csv)|*.csv|Все файлы(*.*)|*.*";
         }
         static int rows;
+        static string path;
         static int columns;
         DataService ds = new DataService();
         public static string[,] LoadFromFileData(string path)
@@ -96,26 +100,40 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
 
                 array = LoadFromFileData(path);
 
-                dataGridView1.ColumnCount = columns;
+                dataGridView1.ColumnCount = columns + 1;
                 dataGridView1.RowCount = rows;
 
                 for (int i = 0; i < columns; i++)
                 {
                     dataGridView1.Columns[i].Width = 65;
                 }
-                dataGridView1.Columns[0].HeaderText = "Страна";
-                dataGridView1.Columns[1].HeaderText = "Столица";
-                dataGridView1.Columns[2].HeaderText = "Экон.Положение";
-                dataGridView1.Columns[3].HeaderText = "Площадь терр.";
-
-                for (int i = 0; i < rows; i++)
-                {
-                    for (int j = 0; j < columns; j++)
+                dataGridView1.Columns[0].Width = 45;
+                dataGridView1.Columns[3].Width = 100;
+                dataGridView1.Columns[4].Width = 95;
+                dataGridView1.Columns[0].HeaderText = "№ строки";
+                dataGridView1.Columns[1].HeaderText = "Страна";
+                dataGridView1.Columns[2].HeaderText = "Столица";
+                dataGridView1.Columns[3].HeaderText = "Экон.Положение";
+                dataGridView1.Columns[4].HeaderText = "Площадь терр.";
+                int index = 0;
+                for(int j = 0; j <= index; j++)
+                    for (int i = 0; i < dataGridView1.RowCount; i++)
                     {
-                        dataGridView1.Rows[i].Cells[j].Value = array[i, j];
+                        dataGridView1.Rows[i].Cells[j].Value = (i + index).ToString();
+                    }
+                int index_column = 1;
+                int new_column = columns;
+                while (index_column <= new_column)
+                {
+                    for (int i = 0; i < rows; i++)
+                    {
+                        for (int j = 0; j < columns; j++)
+                        {
+                            dataGridView1.Rows[i].Cells[index_column].Value = array[i, j];
+                            index_column++;
+                        }
                     }
                 }
-
             }
             catch
             {
@@ -125,10 +143,93 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            int n = dataGridView1.RowCount++;
-            dataGridView1.Rows[n].Cells[0].Value = textBoxCountry;
-                    
+            try
+            {
+                string str = textBoxS.Text;
+                foreach (char c in str)
+                {
+                    if (c < '0' || c > '9')
+                    { 
+                        MessageBox.Show("Введите корректные данные", "Ошибка");
+                        break;
+                    }
+                    else
+                        this.dataGridView1.Rows.Add(textBoxCountry.Text, textBoxCapital.Text, textBoxEcoClass.Text, textBoxS.Text);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Введите корректные данные", "Ошибка");
+            }
+        }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int row_index = Convert.ToInt32(textBoxDel.Text);
+            dataGridView1.Rows.RemoveAt(row_index);
+            dataGridView1.Refresh();
+        }
+
+        private void buttonLoadFile_Click(object sender, EventArgs e)
+        {
+            openFileDialogTask.ShowDialog();
+            path = openFileDialogTask.FileName;
+
+            string[,] array = new string[rows, columns];
+
+            array = LoadFromFileData(path);
+
+            dataGridView1.ColumnCount = columns;
+            dataGridView1.RowCount = rows;
+
+            for (int i = 0; i < columns; i++)
+            {
+                dataGridView1.Columns[i].Width = 65;
+            }
+            dataGridView1.Columns[0].Width = 45;
+            dataGridView1.Columns[3].Width = 100;
+            dataGridView1.Columns[4].Width = 95;
+            dataGridView1.Columns[0].HeaderText = "№ строки";
+            dataGridView1.Columns[1].HeaderText = "Страна";
+            dataGridView1.Columns[2].HeaderText = "Столица";
+            dataGridView1.Columns[3].HeaderText = "Экон.Положение";
+            dataGridView1.Columns[4].HeaderText = "Площадь терр.";
+
+            for (int r = 0; r < rows; r++)
+                for (int c = 0; c < columns; c++)
+                    dataGridView1.Rows[r].Cells[c].Value = array[r, c];
+        }
+
+        private void buttonSaveFile_Click(object sender, EventArgs e)
+        {
+            saveFileDialogMatrix.FileName = "OutPutFileTask7V1.csv";
+            saveFileDialogMatrix.InitialDirectory = Directory.GetCurrentDirectory();
+            saveFileDialogMatrix.ShowDialog();
+
+            string path = saveFileDialogMatrix.FileName;
+
+            FileInfo fileinfo = new FileInfo(path);
+            bool fileex = fileinfo.Exists;
+
+            if (fileex)
+                File.Delete(path);
+
+            int rows = dataGridView1.RowCount;
+            int columns = dataGridView1.ColumnCount;
+
+            string str = "";
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    if (j != columns - 1)
+                        str += dataGridView1.Rows[i].Cells[j].Value + ";";
+                    else
+                        str += dataGridView1.Rows[i].Cells[j].Value;
+                }
+                File.AppendAllText(path, str + Environment.NewLine);
+                str = "";
+            }
         }
     }
 }

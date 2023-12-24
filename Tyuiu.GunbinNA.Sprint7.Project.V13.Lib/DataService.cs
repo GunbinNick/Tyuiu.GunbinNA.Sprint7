@@ -10,28 +10,23 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13.Lib
     public class DataService
     {
         public int len = 0;
-        public string[] GetTextFromFile(string path)
+        public string[,] GetTextFromFile(string path)
         {
-            using (StreamReader reader = new StreamReader(path))
+            string filedata = File.ReadAllText(path);
+            filedata = filedata.Replace('\n', '\r');
+            string[] lines = filedata.Split(new char[] { '\r' }, StringSplitOptions.RemoveEmptyEntries);
+
+            int rows = lines.Length;
+            int columns = lines[0].Split(';').Length;
+
+            string[,] array = new string[rows, columns];
+
+            for (int i = 0; i < rows; i++)
             {
-                string line;
-                string[] line_len;
-                while ((line = reader.ReadLine()) != null)
+                string[] line_str = lines[i].Split(';');
+                for (int j = 0; j < columns; j++)
                 {
-                    line_len = line.Split(';');
-                    len = line_len.Length;
-                    continue;
-                }
-            }
-            string[] array = new string[len];
-            int index = 0;
-            using (StreamReader reader = new StreamReader(path))
-            {
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    array[index] = line;
-                    index++;
+                    array[i, j] = line_str[j];
                 }
             }
             return array;

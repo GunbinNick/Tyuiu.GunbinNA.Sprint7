@@ -29,6 +29,7 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.buttonExit = new System.Windows.Forms.Button();
             this.panelButtons = new System.Windows.Forms.Panel();
@@ -46,6 +47,13 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
             this.textBoxEcoClass = new System.Windows.Forms.TextBox();
             this.textBoxS = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.openFileDialogTask = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialogMatrix = new System.Windows.Forms.SaveFileDialog();
+            this.toolTipNotice = new System.Windows.Forms.ToolTip(this.components);
+            this.button3 = new System.Windows.Forms.Button();
+            this.textBoxDel = new System.Windows.Forms.TextBox();
+            this.buttonLoadFile = new System.Windows.Forms.Button();
+            this.buttonSaveFile = new System.Windows.Forms.Button();
             this.panelButtons.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -75,7 +83,7 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
             this.panelButtons.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelButtons.Location = new System.Drawing.Point(0, 0);
             this.panelButtons.Name = "panelButtons";
-            this.panelButtons.Size = new System.Drawing.Size(313, 639);
+            this.panelButtons.Size = new System.Drawing.Size(313, 693);
             this.panelButtons.TabIndex = 1;
             // 
             // buttonInfo
@@ -120,6 +128,7 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
             this.buttonNotes.Size = new System.Drawing.Size(313, 71);
             this.buttonNotes.TabIndex = 1;
             this.buttonNotes.Text = "Примечания";
+            this.toolTipNotice.SetToolTip(this.buttonNotes, "Расширенное описание стран из файла от разработчика\r\n");
             this.buttonNotes.UseVisualStyleBackColor = false;
             this.buttonNotes.Click += new System.EventHandler(this.buttonNotes_Click);
             // 
@@ -174,13 +183,13 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(785, 253);
+            this.dataGridView1.Location = new System.Drawing.Point(706, 282);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(484, 365);
+            this.dataGridView1.Size = new System.Drawing.Size(563, 399);
             this.dataGridView1.TabIndex = 3;
             // 
             // button1
@@ -235,16 +244,67 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
+            // openFileDialogTask
+            // 
+            this.openFileDialogTask.FileName = "openFileDialog1";
+            // 
+            // toolTipNotice
+            // 
+            this.toolTipNotice.IsBalloon = true;
+            this.toolTipNotice.ToolTipTitle = "Подсказка";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(780, 89);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(131, 46);
+            this.button3.TabIndex = 7;
+            this.button3.Text = "Удалить";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // textBoxDel
+            // 
+            this.textBoxDel.Location = new System.Drawing.Point(519, 185);
+            this.textBoxDel.Multiline = true;
+            this.textBoxDel.Name = "textBoxDel";
+            this.textBoxDel.Size = new System.Drawing.Size(100, 26);
+            this.textBoxDel.TabIndex = 5;
+            // 
+            // buttonLoadFile
+            // 
+            this.buttonLoadFile.Location = new System.Drawing.Point(459, 66);
+            this.buttonLoadFile.Name = "buttonLoadFile";
+            this.buttonLoadFile.Size = new System.Drawing.Size(117, 47);
+            this.buttonLoadFile.TabIndex = 8;
+            this.buttonLoadFile.Text = "Открыть";
+            this.buttonLoadFile.UseVisualStyleBackColor = true;
+            this.buttonLoadFile.Click += new System.EventHandler(this.buttonLoadFile_Click);
+            // 
+            // buttonSaveFile
+            // 
+            this.buttonSaveFile.Location = new System.Drawing.Point(591, 66);
+            this.buttonSaveFile.Name = "buttonSaveFile";
+            this.buttonSaveFile.Size = new System.Drawing.Size(117, 47);
+            this.buttonSaveFile.TabIndex = 8;
+            this.buttonSaveFile.Text = "Сохранить";
+            this.buttonSaveFile.UseVisualStyleBackColor = true;
+            this.buttonSaveFile.Click += new System.EventHandler(this.buttonSaveFile_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(255)))), ((int)(((byte)(150)))));
-            this.ClientSize = new System.Drawing.Size(1281, 639);
+            this.ClientSize = new System.Drawing.Size(1277, 693);
+            this.Controls.Add(this.buttonSaveFile);
+            this.Controls.Add(this.buttonLoadFile);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.textBoxS);
             this.Controls.Add(this.textBoxEcoClass);
             this.Controls.Add(this.textBoxCapital);
+            this.Controls.Add(this.textBoxDel);
             this.Controls.Add(this.textBoxCountry);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
@@ -284,6 +344,13 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
         private System.Windows.Forms.TextBox textBoxEcoClass;
         private System.Windows.Forms.TextBox textBoxS;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.OpenFileDialog openFileDialogTask;
+        private System.Windows.Forms.ToolTip toolTipNotice;
+        private System.Windows.Forms.SaveFileDialog saveFileDialogMatrix;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox textBoxDel;
+        private System.Windows.Forms.Button buttonLoadFile;
+        private System.Windows.Forms.Button buttonSaveFile;
     }
 }
 
