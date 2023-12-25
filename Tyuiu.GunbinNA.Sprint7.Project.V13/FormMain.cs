@@ -89,87 +89,6 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
             FormAbout form = new FormAbout();
             form.ShowDialog();
         }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            try
-            {
-                string path = @"C:\Users\wackko\source\repos\Tyuiu.GunbinNA.Sprint7\mass.csv";
-
-                string[,] array = new string[rows,columns];
-
-                array = LoadFromFileData(path);
-
-                dataGridView1.ColumnCount = columns + 1;
-                dataGridView1.RowCount = rows;
-
-                for (int i = 0; i < columns; i++)
-                {
-                    dataGridView1.Columns[i].Width = 65;
-                }
-                dataGridView1.Columns[0].Width = 45;
-                dataGridView1.Columns[3].Width = 100;
-                dataGridView1.Columns[4].Width = 95;
-                dataGridView1.Columns[0].HeaderText = "№ строки";
-                dataGridView1.Columns[1].HeaderText = "Страна";
-                dataGridView1.Columns[2].HeaderText = "Столица";
-                dataGridView1.Columns[3].HeaderText = "Экон.Положение";
-                dataGridView1.Columns[4].HeaderText = "Площадь терр.";
-                int index = 0;
-                for(int j = 0; j <= index; j++)
-                    for (int i = 0; i < dataGridView1.RowCount; i++)
-                    {
-                        dataGridView1.Rows[i].Cells[j].Value = (i + index).ToString();
-                    }
-                int index_column = 1;
-                int new_column = columns;
-                while (index_column <= new_column)
-                {
-                    for (int i = 0; i < rows; i++)
-                    {
-                        for (int j = 0; j < columns; j++)
-                        {
-                            dataGridView1.Rows[i].Cells[index_column].Value = array[i, j];
-                            index_column++;
-                        }
-                    }
-                }
-            }
-            catch
-            {
-                MessageBox.Show("ОШИБКА");
-            }
-        }
-
-        private void button2_Click_1(object sender, EventArgs e)
-        {
-            try
-            {
-                string str = textBoxS.Text;
-                foreach (char c in str)
-                {
-                    if (c < '0' || c > '9')
-                    { 
-                        MessageBox.Show("Введите корректные данные", "Ошибка");
-                        break;
-                    }
-                    else
-                        this.dataGridView1.Rows.Add(textBoxCountry.Text, textBoxCapital.Text, textBoxEcoClass.Text, textBoxS.Text);
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Введите корректные данные", "Ошибка");
-            }
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            int row_index = Convert.ToInt32(textBoxDel.Text);
-            dataGridView1.Rows.RemoveAt(row_index);
-            dataGridView1.Refresh();
-        }
-
         private void buttonLoadFile_Click(object sender, EventArgs e)
         {
             openFileDialogTask.ShowDialog();
@@ -186,18 +105,73 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
             {
                 dataGridView1.Columns[i].Width = 65;
             }
-            dataGridView1.Columns[0].Width = 45;
-            dataGridView1.Columns[3].Width = 100;
-            dataGridView1.Columns[4].Width = 95;
-            dataGridView1.Columns[0].HeaderText = "№ строки";
-            dataGridView1.Columns[1].HeaderText = "Страна";
-            dataGridView1.Columns[2].HeaderText = "Столица";
-            dataGridView1.Columns[3].HeaderText = "Экон.Положение";
-            dataGridView1.Columns[4].HeaderText = "Площадь терр.";
+            dataGridView1.Columns[2].Width = 100;
+            dataGridView1.Columns[3].Width = 95;
+            dataGridView1.Columns[0].HeaderText = "Страна";
+            dataGridView1.Columns[1].HeaderText = "Столица";
+            dataGridView1.Columns[2].HeaderText = "Экон.Положение";
+            dataGridView1.Columns[3].HeaderText = "Площадь терр.";
 
-            for (int r = 0; r < rows; r++)
-                for (int c = 0; c < columns; c++)
-                    dataGridView1.Rows[r].Cells[c].Value = array[r, c];
+            button1.Enabled = true;
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                string[,] array = new string[rows,columns];
+
+                array = LoadFromFileData(path);
+
+                dataGridView1.ColumnCount = columns;
+                dataGridView1.RowCount = rows;
+
+                for (int i = 0; i < columns; i++)
+                {
+                    dataGridView1.Columns[i].Width = 65;
+                }
+                dataGridView1.Columns[2].Width = 100;
+                dataGridView1.Columns[3].Width = 95;
+                dataGridView1.Columns[0].HeaderText = "Страна";
+                dataGridView1.Columns[1].HeaderText = "Столица";
+                dataGridView1.Columns[2].HeaderText = "Экон.Положение";
+                dataGridView1.Columns[3].HeaderText = "Площадь терр.";
+                for (int i = 0; i < dataGridView1.RowCount; i++)
+                {
+                    dataGridView1.Rows[i].HeaderCell.Value = i.ToString();
+                }
+                for (int i = 0; i < rows; i++)
+                {
+                    for (int j = 0; j < columns; j++)
+                    {
+                        dataGridView1.Rows[i].Cells[j].Value = array[i, j];
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("ОШИБКА");
+            }
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                int c = Convert.ToInt32(textBoxS.Text);
+                this.dataGridView1.Rows.Add(textBoxCountry.Text, textBoxCapital.Text, textBoxEcoClass.Text, textBoxS.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Введите корректные данные", "Ошибка");
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int row_index = Convert.ToInt32(textBoxDel.Text);
+            dataGridView1.Rows.RemoveAt(row_index);
+            dataGridView1.Refresh();
         }
 
         private void buttonSaveFile_Click(object sender, EventArgs e)
@@ -207,13 +181,11 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
             saveFileDialogMatrix.ShowDialog();
 
             string path = saveFileDialogMatrix.FileName;
-
             FileInfo fileinfo = new FileInfo(path);
             bool fileex = fileinfo.Exists;
 
             if (fileex)
                 File.Delete(path);
-
             int rows = dataGridView1.RowCount;
             int columns = dataGridView1.ColumnCount;
 
@@ -230,6 +202,30 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
                 File.AppendAllText(path, str + Environment.NewLine);
                 str = "";
             }
+        }
+
+        private void buttonSort_Click(object sender, EventArgs e)
+        {
+            int n = Convert.ToInt32(textBoxSort.Text);
+            int[] array = new int[rows];
+            if (n == 2)
+            {
+                MessageBox.Show("Данный столбец несортируем", "Ошибка");
+            }
+            if (n == 3)
+            {
+                for (int i = 0; i < rows; i++)
+                {
+                    dataGridView1.Rows[i].Cells[3].Value = (dataGridView1.Rows[i].Cells[3].Value.ToString()).Replace(" ", string.Empty);
+                    array[i] = Convert.ToInt32(dataGridView1.Rows[i].Cells[3].Value);
+                }
+                Array.Sort(array);
+                for (int i = 0; i < rows; i++)
+                {
+                    dataGridView1.Rows[i].Cells[3].Value = array[i];
+                }
+            }
+            dataGridView1.Sort(dataGridView1.Columns[2], ListSortDirection.Descending);
         }
     }
 }
