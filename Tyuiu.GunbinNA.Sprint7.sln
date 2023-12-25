@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tyuiu.GunbinNA.Sprint7.Proj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tyuiu.GunbinNA.Sprint7.Project.V13", "Tyuiu.GunbinNA.Sprint7.Project.V13\Tyuiu.GunbinNA.Sprint7.Project.V13.csproj", "{1E2F820F-4EFB-4FC1-9097-D562777B5E76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp2", "ConsoleApp2\ConsoleApp2.csproj", "{7447502D-7720-4886-9004-47FD9CEF0C89}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,10 +29,6 @@ Global
 		{1E2F820F-4EFB-4FC1-9097-D562777B5E76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E2F820F-4EFB-4FC1-9097-D562777B5E76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E2F820F-4EFB-4FC1-9097-D562777B5E76}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7447502D-7720-4886-9004-47FD9CEF0C89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7447502D-7720-4886-9004-47FD9CEF0C89}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7447502D-7720-4886-9004-47FD9CEF0C89}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7447502D-7720-4886-9004-47FD9CEF0C89}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -43,7 +37,6 @@ Global
 		{B0DF3D1F-BBD3-4EC8-A67C-07263B728D1C} = {B6213616-93DA-4FBC-BE26-2CBA8D1AEDB8}
 		{200E8FC4-C425-4E3A-8D83-E867561217A8} = {B6213616-93DA-4FBC-BE26-2CBA8D1AEDB8}
 		{1E2F820F-4EFB-4FC1-9097-D562777B5E76} = {B6213616-93DA-4FBC-BE26-2CBA8D1AEDB8}
-		{7447502D-7720-4886-9004-47FD9CEF0C89} = {B6213616-93DA-4FBC-BE26-2CBA8D1AEDB8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {11DB8929-486B-4C7F-BD4C-12EC09D74561}

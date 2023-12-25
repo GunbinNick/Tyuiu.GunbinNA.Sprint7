@@ -56,6 +56,8 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
             this.buttonSaveFile = new System.Windows.Forms.Button();
             this.textBoxSort = new System.Windows.Forms.TextBox();
             this.buttonSort = new System.Windows.Forms.Button();
+            this.textBoxSearch = new System.Windows.Forms.TextBox();
+            this.buttonSearch = new System.Windows.Forms.Button();
             this.panelButtons.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -196,7 +198,7 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
             // button1
             // 
             this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(1079, 196);
+            this.button1.Location = new System.Drawing.Point(464, 435);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(152, 55);
             this.button1.TabIndex = 4;
@@ -230,7 +232,7 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
             // 
             // textBoxS
             // 
-            this.textBoxS.Location = new System.Drawing.Point(357, 398);
+            this.textBoxS.Location = new System.Drawing.Point(357, 387);
             this.textBoxS.Multiline = true;
             this.textBoxS.Name = "textBoxS";
             this.textBoxS.Size = new System.Drawing.Size(100, 26);
@@ -238,9 +240,9 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(785, 172);
+            this.button2.Location = new System.Drawing.Point(982, 138);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(126, 39);
+            this.button2.Size = new System.Drawing.Size(131, 49);
             this.button2.TabIndex = 6;
             this.button2.Text = "Add";
             this.button2.UseVisualStyleBackColor = true;
@@ -267,7 +269,7 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
             // 
             // textBoxDel
             // 
-            this.textBoxDel.Location = new System.Drawing.Point(519, 185);
+            this.textBoxDel.Location = new System.Drawing.Point(423, 66);
             this.textBoxDel.Multiline = true;
             this.textBoxDel.Name = "textBoxDel";
             this.textBoxDel.Size = new System.Drawing.Size(100, 26);
@@ -275,9 +277,9 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
             // 
             // buttonLoadFile
             // 
-            this.buttonLoadFile.Location = new System.Drawing.Point(459, 66);
+            this.buttonLoadFile.Location = new System.Drawing.Point(319, 519);
             this.buttonLoadFile.Name = "buttonLoadFile";
-            this.buttonLoadFile.Size = new System.Drawing.Size(117, 47);
+            this.buttonLoadFile.Size = new System.Drawing.Size(381, 60);
             this.buttonLoadFile.TabIndex = 8;
             this.buttonLoadFile.Text = "Открыть";
             this.buttonLoadFile.UseVisualStyleBackColor = true;
@@ -285,9 +287,9 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
             // 
             // buttonSaveFile
             // 
-            this.buttonSaveFile.Location = new System.Drawing.Point(591, 66);
+            this.buttonSaveFile.Location = new System.Drawing.Point(319, 600);
             this.buttonSaveFile.Name = "buttonSaveFile";
-            this.buttonSaveFile.Size = new System.Drawing.Size(117, 47);
+            this.buttonSaveFile.Size = new System.Drawing.Size(381, 60);
             this.buttonSaveFile.TabIndex = 8;
             this.buttonSaveFile.Text = "Сохранить";
             this.buttonSaveFile.UseVisualStyleBackColor = true;
@@ -295,7 +297,7 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
             // 
             // textBoxSort
             // 
-            this.textBoxSort.Location = new System.Drawing.Point(535, 519);
+            this.textBoxSort.Location = new System.Drawing.Point(612, 70);
             this.textBoxSort.Multiline = true;
             this.textBoxSort.Name = "textBoxSort";
             this.textBoxSort.Size = new System.Drawing.Size(100, 26);
@@ -303,7 +305,7 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
             // 
             // buttonSort
             // 
-            this.buttonSort.Location = new System.Drawing.Point(357, 488);
+            this.buttonSort.Location = new System.Drawing.Point(550, 327);
             this.buttonSort.Name = "buttonSort";
             this.buttonSort.Size = new System.Drawing.Size(119, 57);
             this.buttonSort.TabIndex = 9;
@@ -311,12 +313,33 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
             this.buttonSort.UseVisualStyleBackColor = true;
             this.buttonSort.Click += new System.EventHandler(this.buttonSort_Click);
             // 
+            // textBoxSearch
+            // 
+            this.textBoxSearch.Location = new System.Drawing.Point(706, 222);
+            this.textBoxSearch.Multiline = true;
+            this.textBoxSearch.Name = "textBoxSearch";
+            this.textBoxSearch.Size = new System.Drawing.Size(155, 28);
+            this.textBoxSearch.TabIndex = 10;
+            // 
+            // buttonSearch
+            // 
+            this.buttonSearch.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonSearch.BackgroundImage")));
+            this.buttonSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.buttonSearch.Location = new System.Drawing.Point(867, 221);
+            this.buttonSearch.Name = "buttonSearch";
+            this.buttonSearch.Size = new System.Drawing.Size(31, 29);
+            this.buttonSearch.TabIndex = 11;
+            this.buttonSearch.UseVisualStyleBackColor = true;
+            this.buttonSearch.Click += new System.EventHandler(this.button4_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(255)))), ((int)(((byte)(150)))));
             this.ClientSize = new System.Drawing.Size(1277, 693);
+            this.Controls.Add(this.buttonSearch);
+            this.Controls.Add(this.textBoxSearch);
             this.Controls.Add(this.buttonSort);
             this.Controls.Add(this.buttonSaveFile);
             this.Controls.Add(this.buttonLoadFile);
@@ -375,6 +398,8 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
         private System.Windows.Forms.Button buttonSaveFile;
         private System.Windows.Forms.TextBox textBoxSort;
         private System.Windows.Forms.Button buttonSort;
+        private System.Windows.Forms.TextBox textBoxSearch;
+        private System.Windows.Forms.Button buttonSearch;
     }
 }
 

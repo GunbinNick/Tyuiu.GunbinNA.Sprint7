@@ -20,7 +20,7 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
         public FormMain()
         {
             InitializeComponent();
-            music.URL = @"C:\Users\wackko\source\repos\Tyuiu.GunbinNA.Sprint7\ListSongs.mp3";
+            music.URL = @"C:\Users\wackko\source\repos\Tyuiu.GunbinNA.Sprint7\Music and massive\ListSongs.mp3";
             music.settings.volume = 10;
             music.controls.play();
 
@@ -62,7 +62,7 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
             if (isPlaying)
             {
                 music.controls.stop();
-                buttonMusic.BackColor = Color.Red;
+                buttonMusic.BackColor = Color.LimeGreen;
             }
             else
             {
@@ -91,28 +91,36 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
         }
         private void buttonLoadFile_Click(object sender, EventArgs e)
         {
-            openFileDialogTask.ShowDialog();
-            path = openFileDialogTask.FileName;
-
-            string[,] array = new string[rows, columns];
-
-            array = LoadFromFileData(path);
-
-            dataGridView1.ColumnCount = columns;
-            dataGridView1.RowCount = rows;
-
-            for (int i = 0; i < columns; i++)
+            try
             {
-                dataGridView1.Columns[i].Width = 65;
-            }
-            dataGridView1.Columns[2].Width = 100;
-            dataGridView1.Columns[3].Width = 95;
-            dataGridView1.Columns[0].HeaderText = "Страна";
-            dataGridView1.Columns[1].HeaderText = "Столица";
-            dataGridView1.Columns[2].HeaderText = "Экон.Положение";
-            dataGridView1.Columns[3].HeaderText = "Площадь терр.";
+                openFileDialogTask.ShowDialog();
+                path = openFileDialogTask.FileName;
 
-            button1.Enabled = true;
+                string[,] array = new string[rows, columns];
+
+                array = LoadFromFileData(path);
+
+                dataGridView1.ColumnCount = columns;
+                dataGridView1.RowCount = rows;
+
+                for (int i = 0; i < columns; i++)
+                {
+                    dataGridView1.Columns[i].Width = 65;
+                }
+                dataGridView1.Columns[2].Width = 100;
+                dataGridView1.Columns[3].Width = 95;
+                dataGridView1.Columns[0].HeaderText = "Страна";
+                dataGridView1.Columns[1].HeaderText = "Столица";
+                dataGridView1.Columns[2].HeaderText = "Экон.Положение";
+                dataGridView1.Columns[3].HeaderText = "Площадь терр.";
+
+                button1.Enabled = true;
+            }
+            catch
+            {
+                MessageBox.Show("Ошибка при открытии файла", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+                
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -150,7 +158,7 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
             }
             catch
             {
-                MessageBox.Show("ОШИБКА");
+                MessageBox.Show("Неполадки в обработке файла", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -169,63 +177,112 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
 
         private void button3_Click(object sender, EventArgs e)
         {
-            int row_index = Convert.ToInt32(textBoxDel.Text);
-            dataGridView1.Rows.RemoveAt(row_index);
-            dataGridView1.Refresh();
+            try
+            {
+                int row_index = Convert.ToInt32(textBoxDel.Text);
+                dataGridView1.Rows.RemoveAt(row_index);
+                dataGridView1.Refresh();
+            }
+            catch
+            {
+                MessageBox.Show("Вы пытаетесь удалить весь список или несуществующую строку. Не надо так делать.");
+            }
         }
 
         private void buttonSaveFile_Click(object sender, EventArgs e)
         {
-            saveFileDialogMatrix.FileName = "OutPutFileTask7V1.csv";
-            saveFileDialogMatrix.InitialDirectory = Directory.GetCurrentDirectory();
-            saveFileDialogMatrix.ShowDialog();
-
-            string path = saveFileDialogMatrix.FileName;
-            FileInfo fileinfo = new FileInfo(path);
-            bool fileex = fileinfo.Exists;
-
-            if (fileex)
-                File.Delete(path);
-            int rows = dataGridView1.RowCount;
-            int columns = dataGridView1.ColumnCount;
-
-            string str = "";
-            for (int i = 0; i < rows; i++)
+            try
             {
-                for (int j = 0; j < columns; j++)
+                saveFileDialogMatrix.FileName = "OutPutFileT.csv";
+                saveFileDialogMatrix.InitialDirectory = Directory.GetCurrentDirectory();
+                saveFileDialogMatrix.ShowDialog();
+
+                string path = saveFileDialogMatrix.FileName;
+                FileInfo fileinfo = new FileInfo(path);
+                bool fileex = fileinfo.Exists;
+
+                if (fileex)
+                    File.Delete(path);
+                int rows = dataGridView1.RowCount;
+                int columns = dataGridView1.ColumnCount;
+
+                string str = "";
+                for (int i = 0; i < rows; i++)
                 {
-                    if (j != columns - 1)
-                        str += dataGridView1.Rows[i].Cells[j].Value + ";";
-                    else
-                        str += dataGridView1.Rows[i].Cells[j].Value;
+                    for (int j = 0; j < columns; j++)
+                    {
+                        if (j != columns - 1)
+                            str += dataGridView1.Rows[i].Cells[j].Value + ";";
+                        else
+                            str += dataGridView1.Rows[i].Cells[j].Value;
+                    }
+                    File.AppendAllText(path, str + Environment.NewLine);
+                    str = "";
                 }
-                File.AppendAllText(path, str + Environment.NewLine);
-                str = "";
+            }
+            catch
+            {
+                MessageBox.Show("Ошибка сохранения", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void buttonSort_Click(object sender, EventArgs e)
         {
-            int n = Convert.ToInt32(textBoxSort.Text);
-            int[] array = new int[rows];
-            if (n == 2)
+            try
             {
-                MessageBox.Show("Данный столбец несортируем", "Ошибка");
+                int n = Convert.ToInt32(textBoxSort.Text);
+                int[] array = new int[rows];
+                if (n == 2)
+                {
+                    MessageBox.Show("Данный столбец несортируем", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                if (n == 3)
+                {
+                    for (int i = 0; i < rows; i++)
+                    {
+                        dataGridView1.Rows[i].Cells[3].Value = (dataGridView1.Rows[i].Cells[3].Value.ToString()).Replace(" ", string.Empty);
+                        array[i] = Convert.ToInt32(dataGridView1.Rows[i].Cells[3].Value);
+                    }
+                    Array.Sort(array);
+                    for (int i = 0; i < rows; i++)
+                    {
+                        dataGridView1.Rows[i].Cells[3].Value = array[i];
+                    }
+                }
+                dataGridView1.Sort(dataGridView1.Columns[2], ListSortDirection.Descending);
             }
-            if (n == 3)
+            catch
             {
-                for (int i = 0; i < rows; i++)
+                MessageBox.Show("Ошибка сортировки", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            try
+            {
+                string searchValue = textBoxSearch.Text;
+                int num_col = Convert.ToInt32(textBoxSort.Text);
+                foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    dataGridView1.Rows[i].Cells[3].Value = (dataGridView1.Rows[i].Cells[3].Value.ToString()).Replace(" ", string.Empty);
-                    array[i] = Convert.ToInt32(dataGridView1.Rows[i].Cells[3].Value);
-                }
-                Array.Sort(array);
-                for (int i = 0; i < rows; i++)
-                {
-                    dataGridView1.Rows[i].Cells[3].Value = array[i];
+                    if (row.Cells[num_col].Value.ToString().Equals(searchValue))
+                    {
+                        row.Selected = true;
+                        break;
+                    }
                 }
             }
-            dataGridView1.Sort(dataGridView1.Columns[2], ListSortDirection.Descending);
+            catch 
+            {
+                music.URL = @"C:\Users\wackko\source\repos\Tyuiu.GunbinNA.Sprint7\Music and massive\ErrorSound.mp3";
+                music.settings.volume = 25;
+                music.controls.play();
+                MessageBox.Show("Ошибка поиска. Возможно вы не ввели номер столбца", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                music.URL = @"C:\Users\wackko\source\repos\Tyuiu.GunbinNA.Sprint7\Music and massive\ListSongs.mp3";
+                music.settings.volume = 10;
+                music.controls.play();
+            }
         }
     }
 }
