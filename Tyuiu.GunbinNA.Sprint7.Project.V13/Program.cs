@@ -16,7 +16,7 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormMain());
+            Application.Run(new FormMain_GNA());
         }
     }
 }

@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace Tyuiu.GunbinNA.Sprint7.Project.V13
 {
-    public partial class FormAbout : Form
+    public partial class FormAbout_GNA : Form
     {
         bool but = false;
-        public FormAbout()
+        public FormAbout_GNA()
         {
             InitializeComponent();
         }
@@ -27,7 +27,7 @@ namespace Tyuiu.GunbinNA.Sprint7.Project.V13
             }
             else
             {
-                button1.Text = "Закрывайте на свой страх и риск";
+                buttonExit_GNA.Text = "Закрывайте на свой страх и риск";
             }
             but = !but;
         }
